@@ -1,8 +1,14 @@
 package hrmsnet.hrms.entities.concretes.users;
 
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import hrmsnet.hrms.entities.concretes.JobAdvertisement;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -16,6 +22,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAdvertisements"})
 public class Employer extends User {
 	
 	@Column(name = "company_name")
@@ -29,6 +36,9 @@ public class Employer extends User {
 	@Column(name = "phone_number")
 	@NotBlank(message = "Telefon Numarası Alanı Boş Bırakılamaz")
 	private String phoneNumber;
+	
+	@OneToMany(mappedBy ="employer")
+	private List<JobAdvertisement> jobAdvertisements;
 	
 	
 }

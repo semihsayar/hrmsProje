@@ -19,16 +19,18 @@ import hrmsnet.hrms.entities.concretes.users.Employer;
 @Service
 public class EmployerManager implements EmployerService{
 
-	@Autowired
 	private EmployerDao employerDao;
-	
-	@Autowired
 	private EmailVerificationService emailVerificationService;
-	
-	@Autowired
 	private EmployeeVerificationService employeeVerificationService;
 	
-	
+	@Autowired
+	public EmployerManager(EmployerDao employerDao, EmailVerificationService emailVerificationService,EmployeeVerificationService employeeVerificationService) {
+		this.employerDao = employerDao;
+		this.emailVerificationService = emailVerificationService;
+		this.employeeVerificationService = employeeVerificationService;
+	}
+
+
 	@Override
 	public Result add(Employer employer) {
 	

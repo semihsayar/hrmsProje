@@ -5,35 +5,34 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Table(name = "cities")
 @Data
-@Table(name="job_titles")
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAdvertisements"})
-public class JobPosition {
+public class City {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
-	private Integer id;
+	@Column(name = "id")
+	private int Id;
 	
-	@Column(name = "title")
-	@NotBlank(message = "Title Alanı Boş Bırakılamaz")
-	private String title;
+	@Column(name = "name")
+	private String name;
 	
-	@OneToMany(mappedBy = "jobPosition")
+	@OneToMany(mappedBy ="city")
 	private List<JobAdvertisement> jobAdvertisements;
-
+	
+	
 }

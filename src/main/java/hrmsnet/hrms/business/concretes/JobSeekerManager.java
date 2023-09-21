@@ -38,9 +38,9 @@ public class JobSeekerManager implements JobSeekerService {
 			return new ErrorResult("Girdiğiniz E mail Kullanımda");
 		}
 		
-//		if(!(checkIfEmailVerified(jobSeeker).isSuccess())) {
-//			return new ErrorResult("Email Adresiniz Doğrulanamadı");
-//		}
+		if(!(checkIfEmailVerified(jobSeeker).isSuccess())) {
+			return new ErrorResult("Email Adresiniz Doğrulanamadı");
+		}
 		
 		this.jobSeekerDao.save(jobSeeker);
 		return new SuccessResult("İş Arayan Kayıt Oldu");

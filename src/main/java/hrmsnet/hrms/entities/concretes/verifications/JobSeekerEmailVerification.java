@@ -18,8 +18,7 @@ public class JobSeekerEmailVerification  extends EmailVerification {
 	
 	@OneToOne
 	@JoinColumn(name ="candidate_id" )
-	@ToString.Exclude
-	
+	@ToString.Exclude	
 	private JobSeeker jobSeeker;
 }
 

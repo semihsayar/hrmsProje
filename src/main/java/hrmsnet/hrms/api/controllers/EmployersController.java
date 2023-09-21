@@ -16,16 +16,15 @@ import hrmsnet.hrms.entities.concretes.users.Employer;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("api/employers")
+@RequestMapping("/api/employers")
 public class EmployersController {
 
-	@Autowired
 	private EmployerService employerService;
-	
-//	@Autowired
-//	public EmployersController(EmployerService employerService) {
-//		this.employerService = employerService;
-//	}
+
+	@Autowired
+	public EmployersController(EmployerService employerService) {
+	this.employerService = employerService;
+	}
 	
 	@GetMapping("/getAll")
 	public DataResult<List<Employer>> getAll(){
