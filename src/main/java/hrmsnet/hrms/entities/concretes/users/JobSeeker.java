@@ -1,7 +1,20 @@
 package hrmsnet.hrms.entities.concretes.users;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import hrmsnet.hrms.entities.concretes.cvInformations.JobSeekerCoverLetter;
+import hrmsnet.hrms.entities.concretes.cvInformations.JobSeekerEducationInfo;
+import hrmsnet.hrms.entities.concretes.cvInformations.JobSeekerExperienceInfo;
+import hrmsnet.hrms.entities.concretes.cvInformations.JobSeekerImageInfo;
+import hrmsnet.hrms.entities.concretes.cvInformations.JobSeekerLanguageInfo;
+import hrmsnet.hrms.entities.concretes.cvInformations.JobSeekerTalent;
+import hrmsnet.hrms.entities.concretes.cvInformations.JobSeekerWebAddress;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -18,6 +31,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobSeekerEducationInfos","jobSeekerExperienceInfos","jobSeekerLanguageInfos","jobSeekerImageInfos","jobSeekerWebAddress","jobSeekerTalents","jobSeekerCoverLetters"})
 public class JobSeeker extends User {
 
 	@Column(name = "first_name")
@@ -36,5 +50,28 @@ public class JobSeeker extends User {
     @Min(1940)
 	@Max(1999)
 	private int birthYear;
+	
+	@OneToMany(mappedBy = "jobSeeker" )
+	private List<JobSeekerEducationInfo> jobSeekerEducationInfos;
+	
+	@OneToMany(mappedBy = "jobSeeker")
+	private List<JobSeekerExperienceInfo> jobSeekerExperienceInfos;
+	
+	@OneToMany(mappedBy = "jobSeeker")
+	private List<JobSeekerLanguageInfo> jobSeekerLanguageInfos;
+	
+	@OneToMany(mappedBy = "jobSeeker")
+	private List<JobSeekerImageInfo> jobSeekerImageInfos;
+	
+	@OneToOne(mappedBy = "jobSeeker")
+	private JobSeekerWebAddress jobSeekerWebAddress;
+	
+	@OneToMany(mappedBy = "jobSeeker")
+	private List<JobSeekerTalent> jobSeekerTalents;
+	
+	@OneToOne(mappedBy = "jobSeeker")
+	private JobSeekerCoverLetter jobSeekerCoverLetters;
+	
+	
 	
 }

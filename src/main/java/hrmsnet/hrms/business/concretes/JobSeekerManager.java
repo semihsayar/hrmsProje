@@ -13,6 +13,7 @@ import hrmsnet.hrms.core.utilities.results.Result;
 import hrmsnet.hrms.core.utilities.results.SuccessDataResult;
 import hrmsnet.hrms.core.utilities.results.SuccessResult;
 import hrmsnet.hrms.dataAccess.abstracts.JobSeekerDao;
+import hrmsnet.hrms.entities.concretes.dtos.JobSeekerCvDto;
 import hrmsnet.hrms.entities.concretes.users.JobSeeker;
 
 @Service
@@ -69,6 +70,11 @@ public class JobSeekerManager implements JobSeekerService {
 			return new SuccessResult();
 		}return new ErrorResult();
 	
+	}
+
+	@Override
+	public DataResult<List<JobSeekerCvDto>> getJobSeekerCvDto() {
+		return new SuccessDataResult<List<JobSeekerCvDto>>(this.jobSeekerDao.getJobSeekerCvDto(),"Cv Listelendi");
 	}
 
 }

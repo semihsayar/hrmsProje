@@ -14,16 +14,16 @@ import hrmsnet.hrms.entities.concretes.dtos.JobAdvertisementDto;
 
 public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Integer> {
 	
-	@Query("SELECT new hrmsnet.hrms.entities.concretes.dtos.JobAdvertisementDto(j.freePositionAmount, j.startDate, j.endDate, p.title, e.companyName) FROM JobAdvertisement j JOIN j.jobPosition p JOIN j.employer e WHERE j.status = true AND e.companyName = :companyName")
+	@Query("SELECT new hrmsnet.hrms.entities.concretes.dtos.JobAdvertisementDto(j.id, j.freePositionAmount, j.startDate, j.endDate, p.title, e.companyName) FROM JobAdvertisement j JOIN j.jobPosition p JOIN j.employer e WHERE j.status = true AND e.companyName = :companyName")
 	List<JobAdvertisementDto> getByCompanyName(String companyName);
 	
-	@Query("SELECT NEW hrmsnet.hrms.entities.concretes.dtos.JobAdvertisementDto(j.freePositionAmount, j.startDate, j.endDate, p.title, e.companyName) FROM JobAdvertisement j JOIN j.jobPosition p JOIN j.employer e WHERE j.status = true ORDER BY j.endDate ASC")
+	@Query("SELECT NEW hrmsnet.hrms.entities.concretes.dtos.JobAdvertisementDto(j.id, j.freePositionAmount, j.startDate, j.endDate, p.title, e.companyName) FROM JobAdvertisement j JOIN j.jobPosition p JOIN j.employer e WHERE j.status = true ORDER BY j.endDate ASC")
     List<JobAdvertisementDto> getAllOrderByEndDateAsc();
 	
-	@Query("SELECT NEW hrmsnet.hrms.entities.concretes.dtos.JobAdvertisementDto(j.freePositionAmount, j.startDate, j.endDate, p.title, e.companyName) FROM JobAdvertisement j JOIN j.jobPosition p JOIN j.employer e WHERE j.status = true ORDER BY j.endDate DESC")
+	@Query("SELECT NEW hrmsnet.hrms.entities.concretes.dtos.JobAdvertisementDto(j.id, j.freePositionAmount, j.startDate, j.endDate, p.title, e.companyName) FROM JobAdvertisement j JOIN j.jobPosition p JOIN j.employer e WHERE j.status = true ORDER BY j.endDate DESC")
     List<JobAdvertisementDto> getAllOrderByEndDateDesc();
 	
-	@Query("SELECT new hrmsnet.hrms.entities.concretes.dtos.JobAdvertisementDto(j.freePositionAmount, j.startDate, j.endDate, p.title, e.companyName) FROM JobAdvertisement j JOIN j.jobPosition p JOIN j.employer e WHERE j.status = true")
+	@Query("SELECT new hrmsnet.hrms.entities.concretes.dtos.JobAdvertisementDto(j.id, j.freePositionAmount, j.startDate, j.endDate, p.title, e.companyName) FROM JobAdvertisement j JOIN j.jobPosition p JOIN j.employer e WHERE j.status = true")
 	List<JobAdvertisementDto> getJobAdvertisementDtoByStatusTrue();
 	
 	@Modifying

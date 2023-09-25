@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 import hrmsnet.hrms.business.abstracts.JobSeekerService;
 import hrmsnet.hrms.core.utilities.results.DataResult;
 import hrmsnet.hrms.core.utilities.results.Result;
+import hrmsnet.hrms.entities.concretes.dtos.JobSeekerCvDto;
 import hrmsnet.hrms.entities.concretes.users.JobSeeker;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/jobseekers")
+@RequestMapping(value = "/api/jobseekers")
 public class JobSeekersController {
 
 	private JobSeekerService jobSeekerService;
@@ -31,12 +32,16 @@ public class JobSeekersController {
 		
 		return this.jobSeekerService.getAll();
 	}
+	@GetMapping("/getJobSeekerCvDto")
+	public DataResult<List<JobSeekerCvDto>> getJobSeekerCvDto(){
+		
+		return this.jobSeekerService.getJobSeekerCvDto();
+	}
 	
 	@PostMapping("/add")
 	public Result add(@Valid @RequestBody JobSeeker jobSeeker) {
 		
 		return this.jobSeekerService.add(jobSeeker);
-
 	}
 	
 }

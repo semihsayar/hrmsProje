@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class JobAdvertisementDto {
 
+	private int id;
 	private int freePositionAmount;
 	private Date startDate;
 	private Date endDate;
