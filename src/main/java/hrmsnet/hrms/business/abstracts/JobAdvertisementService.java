@@ -11,6 +11,8 @@ public interface JobAdvertisementService {
 	
 	Result add(JobAdvertisement jobAdvertisement);
 	
+	DataResult<JobAdvertisementDto> getById(int id);
+	
 	DataResult<List<JobAdvertisementDto>> getByCompanyName(String companyName);
 	
 	DataResult<List<JobAdvertisementDto>> getAllOrderByEndDateAsc();
@@ -21,6 +23,6 @@ public interface JobAdvertisementService {
 	
 	DataResult<List<JobAdvertisement>> getAll();
 	
-	Result updateJobAdvertisementStatus(int jobAdvertisementId);
+	Result updateJobAdvertisementStatus(int id);
 	
 }

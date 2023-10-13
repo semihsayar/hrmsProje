@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import hrmsnet.hrms.business.abstracts.EmployerService;
-import hrmsnet.hrms.business.services.validations.emailVerifications.EmailVerificationService;
-import hrmsnet.hrms.business.services.validations.systemEmployeeVerifications.EmployeeVerificationService;
+import hrmsnet.hrms.business.abstracts.services.validations.emailVerifications.EmailVerificationService;
+import hrmsnet.hrms.business.abstracts.services.validations.employeeVerifications.EmployeeVerificationService;
 import hrmsnet.hrms.core.utilities.results.DataResult;
 import hrmsnet.hrms.core.utilities.results.ErrorResult;
 import hrmsnet.hrms.core.utilities.results.Result;
@@ -46,9 +46,9 @@ public class EmployerManager implements EmployerService{
 			return new ErrorResult("Email Doğrulanamadı");
 		}
 		
-		if(!(checkIfEmployeeVerified(employer).isSuccess())) {
-			return new ErrorResult("Sistem Çalışanının Onayı Bekleniyor");
-		}
+//		if(!(checkIfEmployeeVerified(employer).isSuccess())) {
+//			return new ErrorResult("Sistem Çalışanının Onayı Bekleniyor");
+//		}
 		
 		this.employerDao.save(employer);
 		return new SuccessResult("İş Veren Eklendi");
@@ -82,13 +82,13 @@ public class EmployerManager implements EmployerService{
 	
 	}
 	
-	private Result checkIfEmployeeVerified(Employer employer) {
-		
-		if (employeeVerificationService.createEmployerEmployeeVerification(employer)) {
-			return new SuccessResult();
-		}return new ErrorResult();
-	
-	}
+//	private Result checkIfEmployeeVerified(Employer employer) {
+//		
+//		if (employeeVerificationService.createEmployerEmployeeVerification(employer)) {
+//			return new SuccessResult();
+//		}return new ErrorResult();
+//	
+//	}
 	
 	private Result checkIfEmailExist(Employer employer) {
 		var result = employerDao.findAll();

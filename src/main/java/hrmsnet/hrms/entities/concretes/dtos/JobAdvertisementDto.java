@@ -12,10 +12,17 @@ import lombok.NoArgsConstructor;
 public class JobAdvertisementDto {
 
 	private int id;
-	private int freePositionAmount;
-	private Date startDate;
 	private Date endDate;
 	private String title;
 	private String companyName;
+	private String imagePath;
+	private int minSalary;
+	private int maxSalary;
+	private String name;
+	private String description;
+	private int freePositionAmount;
+	private Date startDate;
+	private String workingTypeName;
+	private String workingPreferenceName;
 	
 }

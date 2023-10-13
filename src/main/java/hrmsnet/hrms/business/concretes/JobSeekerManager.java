@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import hrmsnet.hrms.business.abstracts.JobSeekerService;
-import hrmsnet.hrms.business.services.validations.emailVerifications.EmailVerificationService;
+import hrmsnet.hrms.business.abstracts.services.validations.emailVerifications.EmailVerificationService;
 import hrmsnet.hrms.core.utilities.results.DataResult;
 import hrmsnet.hrms.core.utilities.results.ErrorResult;
 import hrmsnet.hrms.core.utilities.results.Result;
@@ -61,7 +61,7 @@ public class JobSeekerManager implements JobSeekerService {
 
 	@Override
 	public DataResult<List<JobSeeker>> getAll() {
-		return new SuccessDataResult<List<JobSeeker>>(this.jobSeekerDao.findAll(),"Adaylar Listelendi");
+		return new SuccessDataResult<List<JobSeeker>>(this.jobSeekerDao.findAll(),"Data Listelendi");
 	}
 	
 	private Result checkIfEmailVerified(JobSeeker jobSeeker) {

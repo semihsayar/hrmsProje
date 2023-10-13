@@ -2,7 +2,7 @@ package hrmsnet.hrms.api.controllers;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -19,39 +19,43 @@ import hrmsnet.hrms.entities.concretes.dtos.JobAdvertisementDto;
 import jakarta.transaction.Transactional;
 
 @RestController
-@RequestMapping("/api/jobadvertisements")
+@RequestMapping(value="/api/jobadvertisements")
+@CrossOrigin
 public class JobAdvertisementsController {
 
 	private JobAdvertisementService jobAdvertisementService;
 	
-	@Autowired
 	public JobAdvertisementsController(JobAdvertisementService jobAdvertisementService) {
 		super();
 		this.jobAdvertisementService = jobAdvertisementService;
 	}
 	
+	@GetMapping("/getbyid")
+	public DataResult<JobAdvertisementDto> getById(@RequestParam int id){
+		return this.jobAdvertisementService.getById(id);
+	}
 	
-	@GetMapping("/getAllOrderByEndDateDesc")
+	@GetMapping("/getallorderbyenddatedesc")
 	public DataResult<List<JobAdvertisementDto>> getAllOrderByEndDateDesc(){
 		return this.jobAdvertisementService.getAllOrderByEndDateDesc();
 	}
 	
-	@GetMapping("/getByCompanyName")
+	@GetMapping("/getbycompanyname")
 	public DataResult<List<JobAdvertisementDto>> getByCompanyName(@RequestParam String companyName){
 		return this.jobAdvertisementService.getByCompanyName(companyName);
 	}
 
-	@GetMapping("/getAllOrderByEndDateAsc")
+	@GetMapping("/getallorderbyenddateasc")
 	public DataResult<List<JobAdvertisementDto>> getAllOrderByEndDateAsc(){
 		return this.jobAdvertisementService.getAllOrderByEndDateAsc();
 	}
 
-	@GetMapping("/getJobAdvertisementDtoByStatusTrue")
+	@GetMapping("/getjobadvertisementdtobystatustrue")
 	public DataResult<List<JobAdvertisementDto>> getJobAdvertisementDtoByStatusTrue(){
 		return this.jobAdvertisementService.getJobAdvertisementDtoByStatusTrue();
 	}
 	
-	@GetMapping("/getAll")
+	@GetMapping("/getall")
 	public DataResult<List<JobAdvertisement>> getAll(){
 		return this.jobAdvertisementService.getAll();
 	}
@@ -61,10 +65,10 @@ public class JobAdvertisementsController {
 		return this.jobAdvertisementService.add(jobAdvertisement);
 	}
 	
-	@PutMapping("/updateJobAdvertisementStatus")
+	@PutMapping("/updatejobadvertisementstatus")
 	@Transactional
-	public Result updateJobAdvertisementStatus(@RequestParam int jobAdvertisementId) {
-	    return this.jobAdvertisementService.updateJobAdvertisementStatus(jobAdvertisementId);
+	public Result updateJobAdvertisementStatus(@RequestParam int id) {
+	    return this.jobAdvertisementService.updateJobAdvertisementStatus(id);
 	}
 	
 

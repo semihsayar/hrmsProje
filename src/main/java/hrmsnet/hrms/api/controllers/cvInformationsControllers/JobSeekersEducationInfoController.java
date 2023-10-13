@@ -1,8 +1,9 @@
-package hrmsnet.hrms.api.controllers.cvInformationsController;
+package hrmsnet.hrms.api.controllers.cvInformationsControllers;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,13 +16,14 @@ import hrmsnet.hrms.core.utilities.results.Result;
 import hrmsnet.hrms.entities.concretes.cvInformations.JobSeekerEducationInfo;
 
 @RestController
-@RequestMapping(value = "api/JobSeekerEducationInfo")
-public class JobSeekerEducationInfoController {
+@RequestMapping(value="/api/JobSeekerEducationInfos")
+@CrossOrigin
+public class JobSeekersEducationInfoController {
 	
 	private JobSeekerEducationInfoService jobSeekerEducationInfoService;
 
 	@Autowired
-	public JobSeekerEducationInfoController(JobSeekerEducationInfoService jobSeekerEducationInfoService) {
+	public JobSeekersEducationInfoController(JobSeekerEducationInfoService jobSeekerEducationInfoService) {
 		super();
 		this.jobSeekerEducationInfoService = jobSeekerEducationInfoService;
 	}

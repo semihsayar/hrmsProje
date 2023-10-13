@@ -1,4 +1,4 @@
-package hrmsnet.hrms.business.services.validations.emailVerifications;
+package hrmsnet.hrms.business.abstracts.services.validations.emailVerifications;
 
 import org.springframework.stereotype.Service;
 

@@ -3,6 +3,7 @@ package hrmsnet.hrms.api.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +18,8 @@ import hrmsnet.hrms.entities.concretes.users.JobSeeker;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping(value = "/api/jobseekers")
+@RequestMapping(value="/api/jobseekers")
+@CrossOrigin
 public class JobSeekersController {
 
 	private JobSeekerService jobSeekerService;
@@ -27,12 +29,12 @@ public class JobSeekersController {
 		this.jobSeekerService = jobSeekerService;
 	}
 	
-	@GetMapping("/getAll")
+	@GetMapping("/getall")
 	public DataResult<List<JobSeeker>> getAll(){
 		
 		return this.jobSeekerService.getAll();
 	}
-	@GetMapping("/getJobSeekerCvDto")
+	@GetMapping("/getjobseekercvdto")
 	public DataResult<List<JobSeekerCvDto>> getJobSeekerCvDto(){
 		
 		return this.jobSeekerService.getJobSeekerCvDto();

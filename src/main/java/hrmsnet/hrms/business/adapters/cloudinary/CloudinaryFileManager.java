@@ -24,33 +24,40 @@ public class CloudinaryFileManager implements FileService {
 
 	@Override
 	public String uploadFile(MultipartFile file) {
-		
-		Map<String, String> config = new HashMap<String, String>();
-	        config.put("cloud_name", environment.getProperty("cloudinary.cloud_name"));
-	        config.put("api_key", environment.getProperty("cloudinary.api_key"));
-	        config.put("api_secret", environment.getProperty("cloudinary.api_secret"));
-	        Cloudinary cloudinary = new Cloudinary(config);
-		
-		
-		
-		
-		
-	        String fileNameWithExtension = FileOperations.getFileNameWithExtension(file);
-	        String fileName = FileOperations.getFileName(file);
-	        byte[] fileBytes = FileOperations.getFileBytes(file);
-	        String filePath = environment.getProperty("cloudinary.file_folder_name") + fileName;
 
-	        Object imageVersion = "";
 
-	        try {
-	            imageVersion = cloudinary.uploader().upload(fileBytes, ObjectUtils.asMap( "public_id", filePath));
-	        } catch (IOException exception) {
-	            System.out.println(exception.getMessage());
-	        }
+		// ...
 
-	        String fileFullPath = cloudinary.url().generate(FileOperations.getFileNameWithExtension(file));
-		
-	        return fileFullPath;
+		// Cloudinary konfigürasyonunu yapılandırın
+		Map<String, String> config = new HashMap<>();
+		config.put("cloud_name", environment.getProperty("cloudinary.cloud_name"));
+		config.put("api_key", environment.getProperty("cloudinary.api_key"));
+		config.put("api_secret", environment.getProperty("cloudinary.api_secret"));
+
+		// Cloudinary nesnesini oluşturun
+		Cloudinary cloudinary = new Cloudinary(config);
+
+		// Dosya yükleme işlemi
+		String fileNameWithExtension = FileOperations.getFileNameWithExtension(file);
+		String fileName = FileOperations.getFileName(file);
+		byte[] fileBytes = FileOperations.getFileBytes(file);
+		String filePath = environment.getProperty("cloudinary.file_folder_name") + fileName;
+
+		Object imageVersion = "";
+
+		try {
+		    // Dosyayı yükleyin ve yükleme sonucunu alın
+		    Map<?, ?> uploadResult = cloudinary.uploader().upload(fileBytes, ObjectUtils.asMap("public_id", filePath));
+		    imageVersion = uploadResult.get("version"); // Resim sürümünü alın
+		} catch (IOException exception) {
+		    System.out.println(exception.getMessage());
+		}
+
+		// Dosyanın tam URL'sini oluşturun
+		String fileFullPath = cloudinary.url().resourceType("image").generate(filePath);
+
+		return fileFullPath;
+
 	}
 
 	@Override

@@ -13,6 +13,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.PastOrPresent;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -38,10 +39,12 @@ public class JobSeekerEducationInfo {
 	@Column(name = "degree")
 	private String degree;
 	
+	@PastOrPresent	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "start_date")
 	private Date startDate;
 	
+	@PastOrPresent	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "end_date")
 	private Date endDate;

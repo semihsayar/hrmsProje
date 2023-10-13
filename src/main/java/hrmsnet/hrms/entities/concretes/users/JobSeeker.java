@@ -72,6 +72,4 @@ public class JobSeeker extends User {
 	@OneToOne(mappedBy = "jobSeeker")
 	private JobSeekerCoverLetter jobSeekerCoverLetters;
 	
-	
-	
 }
